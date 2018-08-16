@@ -1,1 +1,1 @@
-include ':app', ':linked'
+include ':app', ':linked', ':sorts'
