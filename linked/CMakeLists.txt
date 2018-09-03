@@ -17,11 +17,13 @@ add_library( # Sets the name of the library.
              SHARED
 
              # Provides a relative path to your source file(s).
-             src/main/cpp/native-lib.cpp )
+             src/main/cpp/native-lib.cpp
+             src/main/cpp/LinkedList.hpp
+              )
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
-# default, you only need to specify the name of the public NDK library
+# default, you only need to specify the lname of the public NDK library
 # you want to add. CMake verifies that the library exists before
 # completing its build.
 

@@ -158,7 +158,7 @@ void LinkedList<E>::insert(int index, E e) {
 }
 
 template<class E>
-void LinkedList<E>::remove(int index) {
+E LinkedList<E>::remove(int index) {
     //边界问题
     // 考虑边界问题  0  ， len , mid
     assert(index >= 0 && index < len);
@@ -186,7 +186,7 @@ template<class E>
 LinkedList<E>::~LinkedList() {
 
     //释放内存？析构节点指针
-    Node *h = head;
+    Node<E> *h = head;
     while(h){
         Node<E> *next = h->next;
         delete h;
