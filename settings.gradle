@@ -1,2 +1,2 @@
 //include ':linked'
-include ':sorts', ':basestructure', ':tower_of_hanoi'
+include ':sorts', ':basestructure', ':tower_of_hanoi', ':hashmap'

@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/basestructure" />
+            <option value="$PROJECT_DIR$/hashmap" />
             <option value="$PROJECT_DIR$/sorts" />
             <option value="$PROJECT_DIR$/tower_of_hanoi" />
           </set>

@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StructureAndAlgorithms.iml" filepath="$PROJECT_DIR$/StructureAndAlgorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/basestructure/basestructure.iml" filepath="$PROJECT_DIR$/basestructure/basestructure.iml" />
-      <module fileurl="file://F:\AndroidStudioWorkSpace\StructureAndAlgorithms\sorts\bubblesort.iml" filepath="F:\AndroidStudioWorkSpace\StructureAndAlgorithms\sorts\bubblesort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hashmap/hashmap.iml" filepath="$PROJECT_DIR$/hashmap/hashmap.iml" />
       <module fileurl="file://$PROJECT_DIR$/sorts/sorts.iml" filepath="$PROJECT_DIR$/sorts/sorts.iml" />
       <module fileurl="file://$PROJECT_DIR$/tower_of_hanoi/tower_of_hanoi.iml" filepath="$PROJECT_DIR$/tower_of_hanoi/tower_of_hanoi.iml" />
     </modules>

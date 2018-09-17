@@ -112,7 +112,7 @@ LinkStack<E>::~LinkStack() {
     Node<E> *h = head;
 
     while (head) {
-        Node *next = h->next;
+        Node<E> *next = h->next;
         delete h;
         head = next;
     }
