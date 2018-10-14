@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Tree" />
             <option value="$PROJECT_DIR$/basestructure" />
             <option value="$PROJECT_DIR$/hashmap" />
             <option value="$PROJECT_DIR$/sorts" />
