@@ -17,8 +17,8 @@ public:
     }
 
     T data;
-    TreeNode *left;     //左孩子
-    TreeNode *right;    //右孩子
+    TreeNode *left = NULL;     //左孩子
+    TreeNode *right = NULL;    //右孩子
 };
 
 
@@ -73,7 +73,8 @@ bool isBalanceTree(TreeNode<char> *pNode) {
     int rightDapth = getDepthTree(pNode->right);
 
 
-    return abs(leftDapth - rightDapth) <= 1 && isBalanceTree(pNode->left) && isBalanceTree(pNode->right);
+    return abs(leftDapth - rightDapth) <= 1 && isBalanceTree(pNode->left) &&
+           isBalanceTree(pNode->right);
 }
 
 int getDepthTree(TreeNode<char> *pNode) {
@@ -84,7 +85,7 @@ int getDepthTree(TreeNode<char> *pNode) {
     int leftDapth = getDepthTree(pNode->left);
     int rightDapth = getDepthTree(pNode->right);
 
-    return std::max(leftDapth, rightDapth) + 1 ;
+    return std::max(leftDapth, rightDapth) + 1;
 }
 
 /**
@@ -191,4 +192,36 @@ void levelOrderTraverse(TreeNode<T> *pNode, void visit(T)) {
         }
     }
 
+}
+
+// 序列化
+void serializeTree(TreeNode<char> *pNode, std::string *str) {
+    if (pNode == NULL) {
+        str->append("#");
+        return;
+    }
+    //首先输出根节点
+//    *str += pNode->data;
+    str->append(std::string(1, pNode->data));
+    //然后遍历左节点
+    serializeTree(pNode->left, str);
+    //然后遍历右节点
+    serializeTree(pNode->right, str);
+
+}
+
+//反序列化 注意二级指针，不了解可以画内存模型图
+TreeNode<char> *deserializeTree(char **str) {
+    if (**str == '#') {
+
+        *str += 1;
+        return NULL;
+    }
+
+    TreeNode<char> *node = new TreeNode(*str);
+    *str += 1;
+    node->left = deserializeTree(str);
+    node->right = deserializeTree(str);
+
+    return node;
 }

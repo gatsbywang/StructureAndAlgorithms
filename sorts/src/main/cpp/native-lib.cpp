@@ -143,20 +143,19 @@ void merge_(int arr[], int l, int mid, int r) {
 
     for (; k <= r; ++k) {
 
-        if(i>mid){
+        if (i > mid) {
             arr[k] = temp[j - l];
             j++;
-        } else if(j>r){
+        } else if (j > r) {
             arr[k] = temp[i - l];
             i++;
-        } else if (temp[i-l] < temp[j-l]) {
+        } else if (temp[i - l] < temp[j - l]) {
             arr[k] = temp[i - l];
             i++;
-        } else{
+        } else {
             arr[k] = temp[j - l];
             j++;
         }
-
 
 
     }
@@ -173,7 +172,7 @@ void mergeSort_(int arr[], int l, int r) {
     mergeSort_(arr, l, mid);
     mergeSort_(arr, mid + 1, r);
     //优化，只有当前半部分的最后一个数字大于排序后半部分第一个数字的时候才进行归并排序。
-    if(arr[mid] >arr[mid+1]){
+    if (arr[mid] > arr[mid + 1]) {
         merge_(arr, l, mid, r);
 
     }
@@ -181,86 +180,86 @@ void mergeSort_(int arr[], int l, int r) {
 
 //归并算法
 void mergeSort(int arr[], int len) {
-    mergeSort_(arr,0,len-1);
+    mergeSort_(arr, 0, len - 1);
 }
 
 //对数组arr区间[l,r] 进行分割排序
-int partition(int arr[], int l, int r){
+int partition(int arr[], int l, int r) {
 
     //优化 跟区间[l,r]随机位置进行比较。
-    std::swap(arr[l],arr[rand()%(r-l+1)+l]);
-    int v =arr[l];
+    std::swap(arr[l], arr[rand() % (r - l + 1) + l]);
+    int v = arr[l];
     //以p为分割，[l+1,p]<v [p+1,r] >v
     int p = l;
 
-    for (int i = l; i <=r ; ++i) {
-        if(arr[i]<v){
+    for (int i = l; i <= r; ++i) {
+        if (arr[i] < v) {
             //只需要处理小于的情况
-            std::swap(arr[p+1],arr[i]);
+            std::swap(arr[p + 1], arr[i]);
             p++;
         }
     }
 
-    std::swap(arr[l],arr[p]);
-    return  p ;
+    std::swap(arr[l], arr[p]);
+    return p;
 }
 
 //对数组arr区间[l,r] 进行快速排序
 void quickSort_(int arr[], int l, int r) {
-    if(l>=r){
+    if (l >= r) {
         return;
     }
 
-    int p = partition(arr,l,r);
-    quickSort_(arr,l,p-1);
-    quickSort_(arr,p+1,r);
+    int p = partition(arr, l, r);
+    quickSort_(arr, l, p - 1);
+    quickSort_(arr, p + 1, r);
 }
 
 
-void quickSort(int arr[], int len){
+void quickSort(int arr[], int len) {
     srand(time(NULL));
-    quickSort_(arr, 0, len-1);
+    quickSort_(arr, 0, len - 1);
 }
 
 
 //对数组arr区间[l,r] 进行快速排序
 void quickSort3ways_(int arr[], int l, int r) {
-    if(l>=r){
+    if (l >= r) {
         return;
     }
 
-  //  int p = partition(arr,l,r);
+    //  int p = partition(arr,l,r);
 
     //定义变量
-    std::swap(arr[l],arr[rand()%(r-l+1)+l]);
-    int v =arr[l];
+    std::swap(arr[l], arr[rand() % (r - l + 1) + l]);
+    int v = arr[l];
 
-    int lt =l;//[l+1,lt] <v
-    int gt = r+1;//[gt,r]>r
-    int i = l+1;//[lt+1,i)=v
+    int lt = l;//[l+1,lt] <v
+    int gt = r + 1;//[gt,r]>r
+    int i = l + 1;//[lt+1,i)=v
 
-    while(gt >i){
-        if(arr[i] > v){
+    while (gt > i) {
+        if (arr[i] > v) {
 
             std::swap(arr[i], arr[gt - 1]);
             gt--;
 
-        }else if(arr[i]<v){
+        } else if (arr[i] < v) {
             std::swap(arr[i], arr[lt + 1]);
             i++;
             lt++;
-        }else{
+        } else {
             i++;
         }
 
 
     }
     //将=的移除 ，只对大于和小于的进行快排
-    quickSort3ways_(arr,l,lt-1);
-    quickSort3ways_(arr,gt,r);
+    quickSort3ways_(arr, l, lt - 1);
+    quickSort3ways_(arr, gt, r);
 }
 
-void quickSort3ways(int arr[], int len){
+void quickSort3ways(int arr[], int len) {
 
     srand(time(NULL));
 
@@ -268,11 +267,46 @@ void quickSort3ways(int arr[], int len){
 }
 
 
-
 void print_array(int arr[], int len) {
     for (int i = 0; i < len; ++i) {
 //        __android_log_print(ANDROID_LOG_ERROR,TAG,"#d",arr[i]);
         LOGE("%d", arr[i]);
+    }
+}
+
+
+//堆排序
+void headSort(int arr[], int len) {
+    //1、从最后一个不是叶子节点的节点，开始调整为大根堆
+    for (int i = len / 2 - 1; i >= 0; i--) {
+        adjustHeap(arr,i,len);
+    }
+
+    //2、第一个与最后一个进行交换，然后继续调整大根堆，但是不考虑最后一个
+    for (int i = len-1; i >= 0; i--) {
+        std::swap(arr[0],arr[i]);
+        adjustHeap(arr,0,i);
+    }
+}
+
+//往下调整为大根堆
+void adjustHeap(int arr[], int k, int n) {
+    while (k * 2 + 1 < n) { //到底的情况
+        //最大指向左孩子
+        int max = 2 * k+1;
+        //有右孩子，且右孩子大于左孩子
+        if (max + 1 < n && arr[max + 1] > arr[max]) {
+            max = max + 1;
+        }
+
+        //最大的是自己
+        if (arr[k] > arr[max]) {
+            break;
+        }
+
+        //交换，
+        std::swap(arr[k], arr[max]);
+        k = max;
     }
 }
 
